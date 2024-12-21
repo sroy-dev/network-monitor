@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
  */
-package NetworkMonitor;
+package NetworkMonitor.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
  *
  * @author Santu
  */
-public class FXMLDocumentController implements Initializable {
+public class MainController implements Initializable {
     
     @FXML
     private Label label;
