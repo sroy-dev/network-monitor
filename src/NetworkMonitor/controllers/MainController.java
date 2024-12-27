@@ -4,12 +4,14 @@
  */
 package NetworkMonitor.controllers;
 
+import NetworkMonitor.utils.ViewSwitcher;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  *
@@ -18,12 +20,15 @@ import javafx.scene.control.Label;
 public class MainController implements Initializable {
     
     @FXML
-    private Label label;
+    private Button button;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+
+        // Switch the scene
+        Stage primaryStage = (Stage) button.getScene().getWindow();
+        
+        ViewSwitcher.switchView(primaryStage, "/NetworkMonitor/views/login.fxml");
     }
     
     @Override
