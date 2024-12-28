@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import oshi.SystemInfo;
 
 /**
  *
@@ -39,7 +40,13 @@ public class HomeController implements Initializable {
     
     public void init() throws SocketException {
         loadAdapters();
-        startSpeedMonitor();
+        
+        SystemInfo systemInfo = new SystemInfo();
+        
+        System.out.println(systemInfo);
+        
+        
+//        startSpeedMonitor();
     }
     
     private void loadAdapters() throws SocketException {
