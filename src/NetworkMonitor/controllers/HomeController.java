@@ -9,6 +9,7 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import oshi.SystemInfo;
+import oshi.hardware.NetworkIF;
 
 /**
  *
@@ -40,35 +42,17 @@ public class HomeController implements Initializable {
     
     public void init() throws SocketException {
         loadAdapters();
-        
-        SystemInfo systemInfo = new SystemInfo();
-        
-        System.out.println(systemInfo);
-        
-        
 //        startSpeedMonitor();
     }
     
     private void loadAdapters() throws SocketException {
-//        System.out.println(adaptersListView);
-        try {
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-//            adaptersListView.getItems().clear();
-            while (interfaces.hasMoreElements()) {
-                NetworkInterface networkInterface = interfaces.nextElement();
-                if (networkInterface.isUp()) {
-//                    adaptersListView.getItems().add(networkInterface.getName());
-//                    System.out.println(networkInterface.getName());
-                    if (networkInterface.isLoopback() || networkInterface.isVirtual()) continue;
-                    
-                    activeAdapter = networkInterface;
-                    activeAdapterLabel.setText(networkInterface.getDisplayName());
-                }
-            }
-        } catch (SocketException e) {
-            activeAdapterLabel.setText("Error: Unable to load adapters");
-            e.printStackTrace();
-        }
+        SystemInfo systemInfo = new SystemInfo();
+
+        // Get all network interfaces (adapters)
+        List<NetworkIF> networkIFs = systemInfo.getHardware().getNetworkIFs();
+        
+        
+        System.out.println(networkIFs);
     }
     
     
