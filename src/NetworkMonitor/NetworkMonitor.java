@@ -31,7 +31,6 @@ public class NetworkMonitor extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Network Monitor");
 
-        // Initialize the controller
         HomeController controller = loader.getController();
         controller.init();
 
