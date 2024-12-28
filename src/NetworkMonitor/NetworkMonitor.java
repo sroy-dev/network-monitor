@@ -4,9 +4,9 @@
  */
 package NetworkMonitor;
 
+import NetworkMonitor.controllers.HomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -17,13 +17,25 @@ import javafx.stage.Stage;
 public class NetworkMonitor extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/NetworkMonitor/views/main.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+//        Parent root = FXMLLoader.load(getClass().getResource("/NetworkMonitor/views/home.fxml"));
+//        
+//        Scene scene = new Scene(root);
+//        
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
         
-        Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/NetworkMonitor/views/home.fxml"));
+        Scene scene = new Scene(loader.load());
         
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Network Monitor");
+
+        // Initialize the controller
+        HomeController controller = loader.getController();
+        controller.init();
+
+        primaryStage.show();
     }
 
     /**
