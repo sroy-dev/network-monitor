@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author Santu
  */
-public class MainController implements Initializable {
+public class TestController implements Initializable {
     
     @FXML
     private Button button;
