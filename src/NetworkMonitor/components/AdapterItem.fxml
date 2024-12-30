@@ -2,14 +2,15 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <HBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NetworkMonitor.components.AdapterItemController">
     <Label text="Interface: " />
-   <HBox prefHeight="50.0">
+   <VBox prefHeight="50.0">
       <children>
           <Text fx:id="interfaceName" />
           <Text fx:id="macAddress" />
       </children>
-   </HBox>
+   </VBox>
 </HBox>
