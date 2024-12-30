@@ -28,7 +28,7 @@ public class AdapterItemController {
         interfaceName.setText(networkIF.getDisplayName());
         macAddress.setText(networkIF.getMacaddr());
         
-//        System.out.println(networkIF);
+        System.out.println(networkIF.queryNetworkInterface().getDisplayName());
     }
     
     

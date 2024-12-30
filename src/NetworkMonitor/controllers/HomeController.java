@@ -10,8 +10,11 @@ import java.lang.management.ManagementFactory;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import oshi.SystemInfo;
 import oshi.hardware.NetworkIF;
+import oshi.hardware.NetworkIF.IfOperStatus;
 
 /**
  *
@@ -50,15 +54,20 @@ public class HomeController implements Initializable {
     }
     
     private void loadAdapters() throws SocketException {
+        String osName = new SystemInfo().getOperatingSystem().getFamily();
 
-        List<NetworkIF> networkIFs = new SystemInfo().getHardware().getNetworkIFs();
+        Set<String> seen = new HashSet<>();
+        List<NetworkIF> networkIFs = new SystemInfo().getHardware().getNetworkIFs().stream()
+                .filter(net -> seen.add(net.getMacaddr()))
+                .collect(Collectors.toList());
         
         for(NetworkIF networkIF : networkIFs) {
-            if(networkIF.getSpeed() > 0 && networkIF.getBytesRecv() > 0){ 
-//                System.out.println(networkIF.getDisplayName());
-//                System.out.println(networkIF.getSpeed());
+            if("macOS".equals(osName) && networkIF.getSpeed() > 0 && networkIF.getBytesRecv() > 0){
+                activeAdapter = networkIF;
+            }else if(networkIF.getIfOperStatus() == IfOperStatus.UP){
                 activeAdapter = networkIF;
             }
+            
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/NetworkMonitor/components/AdapterItem.fxml"));
                 HBox item = loader.load();
