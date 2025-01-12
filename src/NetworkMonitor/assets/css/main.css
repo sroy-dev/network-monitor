@@ -1,0 +1,17 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 31, 2024, 9:54:44 PM
+    Author     : sroy
+*/
+
+.card{
+    -fx-background-color: #404142;
+    -fx-border-color: #535457;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+
